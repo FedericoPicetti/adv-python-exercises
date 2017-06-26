@@ -4,11 +4,9 @@ class AutoInit(type):
   def __init__(Class, classname, bases, attr):
     par = iter(signature(Class.__init__).parameters)
     def newinit(self, *args):
-      
-      next(par) #discard the 'self' name
+      next(par) # discard the 'self' name
       for arg in  args:
         kw = next(par)
-        print(kw, arg)
         setattr(self, kw, arg)
     Class.__init__ = newinit
 
